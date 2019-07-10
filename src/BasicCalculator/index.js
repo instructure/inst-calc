@@ -171,9 +171,10 @@ export default class Basic extends Component {
 
   render = () => (
     <Flex
-      height="230px"
-      width="195px"
+      height="235px"
+      width="200px"
       direction="column"
+      overflowX="hidden"
     >
       {this.renderClearAndDisplay()}
       {this.renderRow1()}
