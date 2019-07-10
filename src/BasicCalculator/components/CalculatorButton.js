@@ -24,7 +24,6 @@
 
 import React from 'react'
 import { Button } from '@instructure/ui-buttons/lib/Button'
-import { Flex } from '@instructure/ui-layout/lib/Flex'
 
 class CalculatorButton extends Button {
     constructor(props) {
@@ -33,18 +32,12 @@ class CalculatorButton extends Button {
 
     render() {
         return (
-            <Flex.Item
-                grow
-                width="48px"
-                padding="xxx-small"
+            <Button
+                onClick={() => this.props.clickFunction(this.props.displaySymbol, this.props.hiddenSymbol)}
+                fluidWidth
             >
-                <Button
-                    onClick={() => this.props.clickFunction(this.props.displaySymbol, this.props.hiddenSymbol)}
-                    {...this.props}
-                >
-                    {this.props.displaySymbol}
-                </Button>
-            </Flex.Item>
+                {this.props.displaySymbol}
+            </Button>
         )
     }
 }

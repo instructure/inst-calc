@@ -25,12 +25,8 @@
 import React, { Component } from 'react'
 import { evaluate } from 'mathjs'
 
-import { IconCalculatorLine } from '@instructure/ui-icons/lib/IconCalculatorLine'
-import { ScreenReaderContent } from '@instructure/ui-a11y/lib/ScreenReaderContent'
-import { Button } from '@instructure/ui-buttons/lib/Button'
 import CalculatorButton from './components/CalculatorButton'
 import CalculatorDisplayText from './components/CalculatorDisplayText'
-import { Grid } from '@instructure/ui-layout/lib/Grid'
 import { Flex } from '@instructure/ui-layout/lib/Flex'
 
 // import PropTypes from 'prop-types'
@@ -52,8 +48,6 @@ export default class Basic extends Component {
   }
 
   addSymbolToDisplay(displaySymbol, hiddenSymbol) {
-    console.log("need to add " + displaySymbol + " to display")
-    console.log("need to add " + hiddenSymbol + " to internal representation")
     if (this.state.hiddenString === "Error" || this.state.displayString === "Error") {
       this.setState({
         displayString: '' + displaySymbol,
@@ -86,219 +80,106 @@ export default class Basic extends Component {
     })
   }
 
-  renderClearAndDisplay() {
+  renderCalcButton(display, value, cb) {
     return (
       <Flex.Item
+        width="48px"
         padding="xxx-small"
       >
-        <Flex direction="row">
-            <CalculatorButton
-              fluidWidth
-              displaySymbol="C"
-              hiddenSymbol="C"
-              clickFunction={this.clearDisplay}
-            />
-          <Flex.Item
-            size="75%"
-          >
-            <CalculatorDisplayText
-              displayText={this.state.displayString}
-            />
-          </Flex.Item>
-        </Flex>
+        <CalculatorButton
+          displaySymbol={display}
+          hiddenSymbol={value}
+          clickFunction={cb}
+        >
+          {display}
+        </CalculatorButton>
       </Flex.Item>
     )
   }
 
-  renderRow1() {
-    return (
-      <Flex.Item
-        padding="xxx-small"
-      >
-        <Flex direction="row">
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="7"
-            hiddenSymbol="7"
-            clickFunction={this.addSymbolToDisplay}
+  renderClearAndDisplay = () => (
+    <Flex.Item
+      padding="xxx-small"
+    >
+      <Flex direction="row">
+        {this.renderCalcButton("C", "C", this.clearDisplay)}
+        <Flex.Item
+          grow
+          textAlign="end"
+          padding="small"
+          overflowX="auto"
+        >
+          <CalculatorDisplayText
+            displayText={this.state.displayString}
           />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="8"
-            hiddenSymbol="8"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="9"
-            hiddenSymbol="9"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="÷"
-            hiddenSymbol="/"
-            clickFunction={this.addSymbolToDisplay}
-          />
-        </Flex>
-      </Flex.Item>
-    )
-  }
-
-  renderRow2() {
-    return (
-      <Flex.Item
-        padding="xxx-small"
-      >
-        <Flex direction="row">
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="4"
-            hiddenSymbol="4"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="5"
-            hiddenSymbol="5"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="6"
-            hiddenSymbol="6"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="×"
-            hiddenSymbol="*"
-            clickFunction={this.addSymbolToDisplay}
-          />
-        </Flex>
-      </Flex.Item>
-    )
-  }
-
-  renderRow3() {
-    return (
-      <Flex.Item
-        padding="xxx-small"
-      >
-        <Flex direction="row">
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="1"
-            hiddenSymbol="1"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="2"
-            hiddenSymbol="2"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="3"
-            hiddenSymbol="3"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="-"
-            hiddenSymbol="-"
-            clickFunction={this.addSymbolToDisplay}
-          />
-        </Flex>
-      </Flex.Item>
-    )
-  }
-
-  renderRow4() {
-    return (
-      <Flex.Item
-        padding="xxx-small"
-      >
-        <Flex direction="row">
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="0"
-            hiddenSymbol="0"
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="."
-            hiddenSymbol="."
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="="
-            hiddenSymbol="="
-            clickFunction={this.addSymbolToDisplay}
-          />
-          <CalculatorButton
-            fluidWidth
-            displaySymbol="+"
-            hiddenSymbol="+"
-            clickFunction={this.addSymbolToDisplay}
-          />
-        </Flex>
-      </Flex.Item>
-    )
-  }
-
-  render() {
-    return (
-      <Flex
-        visualDebug
-        height="300px"
-        width="250px"
-        direction="column"
-      >
-        {this.renderClearAndDisplay()}
-        {this.renderRow1()}
-        {this.renderRow2()}
-        {this.renderRow3()}
-        {this.renderRow4()}
-        {/*
-        <Grid.Row>
-          <Grid.Col width={1}>
-            <CalculatorButton
-              fluidWidth
-              displaySymbol="0"
-              hiddenSymbol="0"
-              clickFunction={this.addSymbolToDisplay}
-            />
-          </Grid.Col>
-          <Grid.Col width={1}>
-            <CalculatorButton
-              fluidWidth
-              displaySymbol="."
-              hiddenSymbol="."
-              clickFunction={this.addSymbolToDisplay}
-            />
-          </Grid.Col>
-          <Grid.Col width={1}>
-            <CalculatorButton
-              fluidWidth
-              displaySymbol="="
-              hiddenSymbol="="
-              clickFunction={this.evaluateDisplay}
-            />
-          </Grid.Col>
-          <Grid.Col width={1}>
-            <CalculatorButton
-              fluidWidth
-              displaySymbol="+"
-              hiddenSymbol="+"
-              clickFunction={this.addSymbolToDisplay}
-            />
-          </Grid.Col>
-        </Grid.Row>*/}
+        </Flex.Item>
       </Flex>
-    )
-  }
+    </Flex.Item>
+  )
+
+  renderRow1 = () => (
+    <Flex.Item
+      padding="xxx-small"
+    >
+      <Flex direction="row">
+        {this.renderCalcButton("7", "7", this.addSymbolToDisplay)}
+        {this.renderCalcButton("8", "8", this.addSymbolToDisplay)}
+        {this.renderCalcButton("9", "9", this.addSymbolToDisplay)}
+        {this.renderCalcButton("÷", "/", this.addSymbolToDisplay)}
+      </Flex>
+    </Flex.Item>
+  )
+
+  renderRow2 = () => (
+    <Flex.Item
+      padding="xxx-small"
+    >
+      <Flex direction="row">
+        {this.renderCalcButton("4", "4", this.addSymbolToDisplay)}
+        {this.renderCalcButton("5", "5", this.addSymbolToDisplay)}
+        {this.renderCalcButton("6", "6", this.addSymbolToDisplay)}
+        {this.renderCalcButton("x", "*", this.addSymbolToDisplay)}
+      </Flex>
+    </Flex.Item>
+  )
+
+  renderRow3 = () => (
+    <Flex.Item
+      padding="xxx-small"
+    >
+      <Flex direction="row">
+        {this.renderCalcButton("1", "1", this.addSymbolToDisplay)}
+        {this.renderCalcButton("2", "2", this.addSymbolToDisplay)}
+        {this.renderCalcButton("3", "3", this.addSymbolToDisplay)}
+        {this.renderCalcButton("-", "-", this.addSymbolToDisplay)}
+      </Flex>
+    </Flex.Item>
+  )
+
+  renderRow4 = () => (
+    <Flex.Item
+      padding="xxx-small"
+    >
+      <Flex direction="row">
+        {this.renderCalcButton("0", "0", this.addSymbolToDisplay)}
+        {this.renderCalcButton(".", ".", this.addSymbolToDisplay)}
+        {this.renderCalcButton("=", "=", this.evaluateDisplay)}
+        {this.renderCalcButton("+", "+", this.addSymbolToDisplay)}
+      </Flex>
+    </Flex.Item>
+  )
+
+  render = () => (
+    <Flex
+      height="230px"
+      width="195px"
+      direction="column"
+    >
+      {this.renderClearAndDisplay()}
+      {this.renderRow1()}
+      {this.renderRow2()}
+      {this.renderRow3()}
+      {this.renderRow4()}
+    </Flex>
+  )
 }
