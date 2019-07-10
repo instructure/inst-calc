@@ -31,6 +31,7 @@ import '@instructure/canvas-theme'
 const App = () => (
   <div>
     <Basic />
+    <hr />
     <Scientific />
   </div>
 )
