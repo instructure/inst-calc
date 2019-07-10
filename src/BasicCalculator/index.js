@@ -23,6 +23,7 @@
  */
 
 import React, { Component } from 'react'
+import { evaluate } from '@mathjs'
 
 import { IconCalculatorLine } from '@instructure/ui-icons/lib/IconCalculatorLine'
 import { ScreenReaderContent } from '@instructure/ui-a11y/lib/ScreenReaderContent'
@@ -42,6 +43,7 @@ export default class Basic extends Component {
     }
     this.addSymbolToDisplay = this.addSymbolToDisplay.bind(this)
     this.clearDisplay = this.clearDisplay.bind(this)
+    this.evaluateDisplay = this.evaluateDisplay.bind(this)
   }
 
   static propTypes = {
@@ -61,6 +63,14 @@ export default class Basic extends Component {
     this.setState({
       displayString: '',
       hiddenString: ''
+    })
+  }
+
+  evaluateDisplay() {
+    const result = evaluate(this.state.hiddenString)
+    this.setState({
+      displayString: toString(result),
+      hiddenString: toString(result)
     })
   }
 
@@ -213,7 +223,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="="
                 hiddenSymbol="="
-                clickFunction={this.addSymbolToDisplay}
+                clickFunction={this.evaluateDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -226,6 +236,7 @@ export default class Basic extends Component {
             </Grid.Col>
           </Grid.Row>
         </Grid>
+        <div>{this.state.hiddenString}</div>
       </div>
     )
   }
