@@ -27,10 +27,21 @@ import React, { Component } from 'react'
 import { IconCalculatorLine } from '@instructure/ui-icons/lib/IconCalculatorLine'
 import { ScreenReaderContent } from '@instructure/ui-a11y/lib/ScreenReaderContent'
 import { Button } from '@instructure/ui-buttons/lib/Button'
+import CalculatorButton from './components/CalculatorButton'
+import CalculatorDisplayText from './components/CalculatorDisplayText'
+import { Grid } from '@instructure/ui-layout/lib/Grid'
 
 // import PropTypes from 'prop-types'
 
 export default class Basic extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      displayString: '',
+      hiddenString: ''
+    }
+  }
+
   static propTypes = {
 
   }
@@ -43,6 +54,143 @@ export default class Basic extends Component {
           <ScreenReaderContent>Open the basic calculator</ScreenReaderContent>
           Basic
         </Button>
+        <hr />
+        <Grid>
+          <Grid.Row>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="C"
+                hiddenSymbol="C"
+              />
+            </Grid.Col>
+            <Grid.Col width={3}>
+              <CalculatorDisplayText
+                displayText="HelloWorld"
+              />
+            </Grid.Col>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="7"
+                hiddenSymbol="7"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="8"
+                hiddenSymbol="8"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="9"
+                hiddenSymbol="9"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="÷"
+                hiddenSymbol="/"
+              />
+              </Grid.Col>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Col width={1}>
+                <CalculatorButton
+                  fluidWidth
+                  displaySymbol="4"
+                  hiddenSymbol="4"
+                />
+              </Grid.Col>
+              <Grid.Col width={1}>
+                <CalculatorButton
+                  fluidWidth
+                  displaySymbol="5"
+                  hiddenSymbol="5"
+                />
+              </Grid.Col>
+              <Grid.Col width={1}>
+                <CalculatorButton
+                  fluidWidth
+                  displaySymbol="6"
+                  hiddenSymbol="6"
+                />
+              </Grid.Col>
+              <Grid.Col width={1}>
+                <CalculatorButton
+                  fluidWidth
+                  displaySymbol="×"
+                  hiddenSymbol="*"
+                />
+            </Grid.Col>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="1"
+                hiddenSymbol="1"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="2"
+                hiddenSymbol="2"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="3"
+                hiddenSymbol="3"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="-"
+                hiddenSymbol="-"
+              />
+            </Grid.Col>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="0"
+                hiddenSymbol="0"
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="."
+                hiddenSymbol="."
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="="
+                hiddenSymbol="="
+              />
+            </Grid.Col>
+            <Grid.Col width={1}>
+              <CalculatorButton
+                fluidWidth
+                displaySymbol="+"
+                hiddenSymbol="+"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </Grid>
       </div>
     )
   }
