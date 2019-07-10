@@ -23,7 +23,7 @@
  */
 
 import React, { Component } from 'react'
-import { evaluate } from '@mathjs'
+import { evaluate } from 'mathjs'
 
 import { IconCalculatorLine } from '@instructure/ui-icons/lib/IconCalculatorLine'
 import { ScreenReaderContent } from '@instructure/ui-a11y/lib/ScreenReaderContent'
@@ -53,10 +53,18 @@ export default class Basic extends Component {
   addSymbolToDisplay(displaySymbol, hiddenSymbol) {
     console.log("need to add " + displaySymbol + " to display")
     console.log("need to add " + hiddenSymbol + " to internal representation")
-    this.setState({
-      displayString: this.state.displayString + displaySymbol,
-      hiddenString: this.state.hiddenString + hiddenSymbol
-    })
+    if (this.state.hiddenString === "Error" || this.state.displayString === "Error") {
+      this.setState({
+        displayString: '' + displaySymbol,
+        hiddenString: '' + hiddenSymbol
+      })
+    }
+    else {
+      this.setState({
+        displayString: this.state.displayString + displaySymbol,
+        hiddenString: this.state.hiddenString + hiddenSymbol
+      })
+    }
   }
 
   clearDisplay() {
@@ -67,10 +75,13 @@ export default class Basic extends Component {
   }
 
   evaluateDisplay() {
-    const result = evaluate(this.state.hiddenString)
+    let result = evaluate(this.state.hiddenString).toString()
+    if (result === "NaN" || result === "Infinity") {
+      result = "Error"
+    }
     this.setState({
-      displayString: toString(result),
-      hiddenString: toString(result)
+      displayString: result.toString(),
+      hiddenString: result.toString()
     })
   }
 
