@@ -40,10 +40,28 @@ export default class Basic extends Component {
       displayString: '',
       hiddenString: ''
     }
+    this.addSymbolToDisplay = this.addSymbolToDisplay.bind(this)
+    this.clearDisplay = this.clearDisplay.bind(this)
   }
 
   static propTypes = {
 
+  }
+
+  addSymbolToDisplay(displaySymbol, hiddenSymbol) {
+    console.log("need to add " + displaySymbol + " to display")
+    console.log("need to add " + hiddenSymbol + " to internal representation")
+    this.setState({
+      displayString: this.state.displayString + displaySymbol,
+      hiddenString: this.state.hiddenString + hiddenSymbol
+    })
+  }
+
+  clearDisplay() {
+    this.setState({
+      displayString: '',
+      hiddenString: ''
+    })
   }
 
   render () {
@@ -62,11 +80,12 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="C"
                 hiddenSymbol="C"
+                clickFunction={this.clearDisplay}
               />
             </Grid.Col>
             <Grid.Col width={3}>
               <CalculatorDisplayText
-                displayText="HelloWorld"
+                displayText={this.state.displayString}
               />
             </Grid.Col>
           </Grid.Row>
@@ -76,6 +95,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="7"
                 hiddenSymbol="7"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -83,6 +103,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="8"
                 hiddenSymbol="8"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -90,6 +111,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="9"
                 hiddenSymbol="9"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -97,6 +119,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="÷"
                 hiddenSymbol="/"
+                clickFunction={this.addSymbolToDisplay}
               />
               </Grid.Col>
             </Grid.Row>
@@ -106,6 +129,7 @@ export default class Basic extends Component {
                   fluidWidth
                   displaySymbol="4"
                   hiddenSymbol="4"
+                  clickFunction={this.addSymbolToDisplay}
                 />
               </Grid.Col>
               <Grid.Col width={1}>
@@ -113,6 +137,7 @@ export default class Basic extends Component {
                   fluidWidth
                   displaySymbol="5"
                   hiddenSymbol="5"
+                  clickFunction={this.addSymbolToDisplay}
                 />
               </Grid.Col>
               <Grid.Col width={1}>
@@ -120,6 +145,7 @@ export default class Basic extends Component {
                   fluidWidth
                   displaySymbol="6"
                   hiddenSymbol="6"
+                  clickFunction={this.addSymbolToDisplay}
                 />
               </Grid.Col>
               <Grid.Col width={1}>
@@ -127,6 +153,7 @@ export default class Basic extends Component {
                   fluidWidth
                   displaySymbol="×"
                   hiddenSymbol="*"
+                  clickFunction={this.addSymbolToDisplay}
                 />
             </Grid.Col>
           </Grid.Row>
@@ -136,6 +163,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="1"
                 hiddenSymbol="1"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -143,6 +171,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="2"
                 hiddenSymbol="2"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -150,6 +179,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="3"
                 hiddenSymbol="3"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -157,6 +187,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="-"
                 hiddenSymbol="-"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
           </Grid.Row>
@@ -166,6 +197,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="0"
                 hiddenSymbol="0"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -173,6 +205,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="."
                 hiddenSymbol="."
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -180,6 +213,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="="
                 hiddenSymbol="="
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
             <Grid.Col width={1}>
@@ -187,6 +221,7 @@ export default class Basic extends Component {
                 fluidWidth
                 displaySymbol="+"
                 hiddenSymbol="+"
+                clickFunction={this.addSymbolToDisplay}
               />
             </Grid.Col>
           </Grid.Row>
