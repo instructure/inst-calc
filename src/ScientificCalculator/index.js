@@ -139,10 +139,10 @@ export default class Scientific extends Component {
     >
       <Flex direction="row">
         {this.renderCalcButton("2nd", "2nd", "2nd", Function.prototype)}
-        {this.renderCalcButton("%", "%", "%", Function.prototype)}
-        {this.renderCalcButton("EE", "*10^(", "*10^(", Function.prototype)}
-        {this.renderCalcButton("e", "e", "e", Function.prototype)}
-        {this.renderCalcButton("ln", "ln", "ln", Function.prototype)}
+        {this.renderCalcButton("%", "%", "%", this.addSymbolToDisplay)}
+        {this.renderCalcButton("EE", "*10^(", "*10^(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("e", "e", "e", this.addSymbolToDisplay)}
+        {this.renderCalcButton("ln", "ln(", "ln(", this.addSymbolToDisplay)}
         {this.renderCalcButton("(", "(", "(", this.addSymbolToDisplay)}
         {this.renderCalcButton(")", ")", ")", this.addSymbolToDisplay)}
         {this.renderCalcButton("+/-", "+/-", "+/-", Function.prototype)}
@@ -159,8 +159,8 @@ export default class Scientific extends Component {
         {this.renderCalcButton("nPr", "nPr", "nPr", Function.prototype)}
         {this.renderCalcButton("nCr", "nCr", "nCr", Function.prototype)}
         {this.renderCalcButton("x!", "!", "!", this.addSymbolToDisplay)}
-        {this.renderCalcButton("π", "pi", "pi", Function.prototype)}
-        {this.renderCalcButton("log(10)", "log(10)", "log(10)", Function.prototype)}
+        {this.renderCalcButton("π", "π", "pi", this.addSymbolToDisplay)}
+        {this.renderCalcButton("log(10)", "log(", "log(", this.addSymbolToDisplay)}
         {this.renderCalcButton("7", "7", "7", this.addSymbolToDisplay)}
         {this.renderCalcButton("8", "8", "8", this.addSymbolToDisplay)}
         {this.renderCalcButton("9", "9", "9", this.addSymbolToDisplay)}
@@ -174,9 +174,9 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("sin", "sin", "sin", Function.prototype)}
-        {this.renderCalcButton("sec", "sec", "sec", Function.prototype)}
-        {this.renderCalcButton("sinh", "sinh", "sinh", Function.prototype)}
+        {this.renderCalcButton("sin", "sin(", "sin(", Function.prototype)}
+        {this.renderCalcButton("sec", "sec(", "sec(", Function.prototype)}
+        {this.renderCalcButton("sinh", "sinh(", "sinh(", Function.prototype)}
         {this.renderCalcButton("1/x", "1/x", "1/x", Function.prototype)}
         {this.renderCalcButton("log(n)", "log(n)", "log(n)", Function.prototype)}
         {this.renderCalcButton("4", "4", "4", this.addSymbolToDisplay)}
@@ -192,11 +192,11 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("cos", "cos", "cos", Function.prototype)}
-        {this.renderCalcButton("csc", "csc", "csc", Function.prototype)}
-        {this.renderCalcButton("cosh", "cosh", "cosh", Function.prototype)}
-        {this.renderCalcButton("sqrt", "sqrt(", "sqrt(", this.addSymbolToDisplay)}
-        {this.renderCalcButton("x^2", "x^2", "x^2", Function.prototype)}
+        {this.renderCalcButton("cos", "cos(", "cos(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("csc", "csc(", "csc(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("cosh", "cosh(", "cosh(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("√(x)", "sqrt(", "sqrt(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("x^2", "^2", "^2", this.addSymbolToDisplay)}
         {this.renderCalcButton("1", "1", "1", this.addSymbolToDisplay)}
         {this.renderCalcButton("2", "2", "2", this.addSymbolToDisplay)}
         {this.renderCalcButton("3", "3", "3", this.addSymbolToDisplay)}
@@ -210,11 +210,11 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("tan", "tan", "tan", Function.prototype)}
-        {this.renderCalcButton("cot", "cot", "cot", Function.prototype)}
-        {this.renderCalcButton("tanh", "tanh", "tanh", Function.prototype)}
+        {this.renderCalcButton("tan", "tan(", "tan(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("cot", "cot(", "cot(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("tanh", "tanh(", "tanh(", this.addSymbolToDisplay)}
         {this.renderCalcButton("nrt", "nrt", "nrt", Function.prototype)}
-        {this.renderCalcButton("x^n", "x^n", "x^n", Function.prototype)}
+        {this.renderCalcButton("x^n", "^", "^", this.addSymbolToDisplay)}
         {this.renderCalcButton("0", "0", "0", this.addSymbolToDisplay)}
         {this.renderCalcButton(".", ".", ".", this.addSymbolToDisplay)}
         {this.renderCalcButton("=", "=", "=", this.evaluateDisplay)}
