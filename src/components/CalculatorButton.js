@@ -24,10 +24,16 @@
 
 import React from 'react'
 import { Button } from '@instructure/ui-buttons/lib/Button'
+import PropTypes from 'prop-types'
 
 class CalculatorButton extends Button {
     constructor(props) {
         super(props)
+    }
+
+    static propTypes = {
+        displaySymbol: PropTypes.string.isRequired,
+        hiddenSymbol: PropTypes.string.isRequired
     }
 
     render() {

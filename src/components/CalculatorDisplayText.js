@@ -24,10 +24,15 @@
 
 import React from 'react'
 import { Text } from '@instructure/ui-elements/lib/Text'
+import PropTypes from 'prop-types'
 
 class CalculatorDisplayText extends React.Component {
     constructor(props) {
         super(props)
+    }
+
+    static propTypes = {
+        displayText: PropTypes.string.isRequired
     }
 
     render() {
