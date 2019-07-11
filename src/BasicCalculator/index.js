@@ -25,11 +25,9 @@
 import React, { Component } from 'react'
 import { evaluate } from 'mathjs'
 
-import CalculatorButton from './components/CalculatorButton'
-import CalculatorDisplayText from './components/CalculatorDisplayText'
+import CalculatorButton from '../components/CalculatorButton'
+import CalculatorDisplayText from '../components/CalculatorDisplayText'
 import { Flex } from '@instructure/ui-layout/lib/Flex'
-
-// import PropTypes from 'prop-types'
 
 export default class Basic extends Component {
   constructor(props) {
@@ -38,16 +36,9 @@ export default class Basic extends Component {
       displayString: '',
       hiddenString: ''
     }
-    this.addSymbolToDisplay = this.addSymbolToDisplay.bind(this)
-    this.clearDisplay = this.clearDisplay.bind(this)
-    this.evaluateDisplay = this.evaluateDisplay.bind(this)
   }
 
-  static propTypes = {
-
-  }
-
-  addSymbolToDisplay(displaySymbol, hiddenSymbol) {
+  addSymbolToDisplay = (displaySymbol, hiddenSymbol) => {
     if (this.state.hiddenString === "Error" || this.state.displayString === "Error") {
       this.setState({
         displayString: '' + displaySymbol,
@@ -62,14 +53,14 @@ export default class Basic extends Component {
     }
   }
 
-  clearDisplay() {
+  clearDisplay = () => {
     this.setState({
       displayString: '',
       hiddenString: ''
     })
   }
 
-  evaluateDisplay() {
+  evaluateDisplay = () => {
     let result = evaluate(this.state.hiddenString).toString()
     if (result === "NaN" || result === "Infinity") {
       result = "Error"

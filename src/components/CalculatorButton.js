@@ -23,18 +23,37 @@
  */
 
 import React from 'react'
-import { Text } from '@instructure/ui-elements/lib/Text'
+import { Button } from '@instructure/ui-buttons/lib/Button'
+import PropTypes from 'prop-types'
 
-class CalculatorDisplayText extends React.Component {
+class CalculatorButton extends Button {
     constructor(props) {
         super(props)
     }
 
+    static propTypes = {
+        buttonSymbol: PropTypes.string,
+        displaySymbol: PropTypes.string.isRequired,
+        hiddenSymbol: PropTypes.string.isRequired
+    }
+
     render() {
+        let textToDisplayOnButton = ''
+        if (this.props.buttonSymbol) {
+            textToDisplayOnButton = this.props.buttonSymbol
+        }
+        else {
+            textToDisplayOnButton = this.props.displaySymbol
+        }
         return (
-            <Text padding="small">{this.props.displayText}</Text>
+            <Button
+                onClick={() => this.props.clickFunction(this.props.displaySymbol, this.props.hiddenSymbol)}
+                fluidWidth
+            >
+                {textToDisplayOnButton}
+            </Button>
         )
     }
 }
 
-export default CalculatorDisplayText
+export default CalculatorButton

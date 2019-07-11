@@ -23,23 +23,23 @@
  */
 
 import React from 'react'
-import { Button } from '@instructure/ui-buttons/lib/Button'
+import { Text } from '@instructure/ui-elements/lib/Text'
+import PropTypes from 'prop-types'
 
-class CalculatorButton extends Button {
+class CalculatorDisplayText extends React.Component {
     constructor(props) {
         super(props)
     }
 
+    static propTypes = {
+        displayText: PropTypes.string.isRequired
+    }
+
     render() {
         return (
-            <Button
-                onClick={() => this.props.clickFunction(this.props.displaySymbol, this.props.hiddenSymbol)}
-                fluidWidth
-            >
-                {this.props.displaySymbol}
-            </Button>
+            <Text padding="small">{this.props.displayText}</Text>
         )
     }
 }
 
-export default CalculatorButton
+export default CalculatorDisplayText
