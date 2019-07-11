@@ -23,6 +23,7 @@
  */
 
 import React, { Component } from 'react'
+import { evaluate } from 'mathjs'
 
 import { Flex } from '@instructure/ui-layout/lib/Flex'
 
@@ -33,7 +34,7 @@ export default class Scientific extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayString: 'hello world',
+      displayString: '',
       hiddenString: ''
     }
   }
@@ -60,7 +61,20 @@ export default class Scientific extends Component {
     })
   }
 
+  backspaceDisplay = () => {
+    if (this.state.displayString.length > 0) {
+      this.setState({
+        displayString: this.state.displayString.slice(0, -1),
+        hiddenString: this.state.hiddenString.slice(0, 1)
+      })
+    }
+  }
+
   evaluateDisplay = () => {
+    // TODO: automatically close unclosed parentheses
+    // for example: "sqrt(4" should be transformed to
+    // "sqrt(4)" before evaluation
+
     let result = evaluate(this.state.hiddenString).toString()
     if (result === "NaN" || result === "Infinity") {
       result = "Error"
@@ -71,14 +85,15 @@ export default class Scientific extends Component {
     })
   }
 
-  renderCalcButton (display, value, cb, width = 1) {
-    const buttonWidth = (60 * width) + 'px'
+  renderCalcButton (button, display, value, cb, width = 1) {
+    const buttonWidth = (80 * width) + 'px'
     return (
       <Flex.Item
         width={buttonWidth}
         padding="xxx-small"
       >
         <CalculatorButton
+          buttonSymbol={button}
           displaySymbol={display}
           hiddenSymbol={value}
           clickFunction={cb}
@@ -107,13 +122,13 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("Rad/Deg", "Rad/Deg", Function.prototype, 2)}
-        {this.renderCalcButton("MC", "MC", Function.prototype)}
-        {this.renderCalcButton("MR", "MR", Function.prototype)}
-        {this.renderCalcButton("M+", "M+", Function.prototype)}
-        {this.renderCalcButton("M-", "M-", Function.prototype)}
-        {this.renderCalcButton("CE", "CE", Function.prototype)}
-        {this.renderCalcButton("Clear", "Clear", Function.prototype, 2)}
+        {this.renderCalcButton("Rad/Deg", "Rad/Deg", "Rad/Deg", Function.prototype, 2)}
+        {this.renderCalcButton("MC", "MC", "MC", Function.prototype)}
+        {this.renderCalcButton("MR", "MR", "MR", Function.prototype)}
+        {this.renderCalcButton("M+", "M+", "M+", Function.prototype)}
+        {this.renderCalcButton("M-", "M-", "M-", Function.prototype)}
+        {this.renderCalcButton("CE", "CE", "CE", Function.prototype)}
+        {this.renderCalcButton("Clear", "Clear", "Clear", this.clearDisplay, 2)}
       </Flex>
     </Flex.Item>
   )
@@ -123,15 +138,15 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("alt", "alt", Function.prototype)}
-        {this.renderCalcButton("%", "%", Function.prototype)}
-        {this.renderCalcButton("EE", "EE", Function.prototype)}
-        {this.renderCalcButton("e", "e", Function.prototype)}
-        {this.renderCalcButton("ln", "ln", Function.prototype)}
-        {this.renderCalcButton("(", "(", Function.prototype)}
-        {this.renderCalcButton(")", ")", Function.prototype)}
-        {this.renderCalcButton("+/-", "+/-", Function.prototype)}
-        {this.renderCalcButton("Del", "Del", Function.prototype)}
+        {this.renderCalcButton("2nd", "2nd", "2nd", Function.prototype)}
+        {this.renderCalcButton("%", "%", "%", Function.prototype)}
+        {this.renderCalcButton("EE", "*10^(", "*10^(", Function.prototype)}
+        {this.renderCalcButton("e", "e", "e", Function.prototype)}
+        {this.renderCalcButton("ln", "ln", "ln", Function.prototype)}
+        {this.renderCalcButton("(", "(", "(", this.addSymbolToDisplay)}
+        {this.renderCalcButton(")", ")", ")", this.addSymbolToDisplay)}
+        {this.renderCalcButton("+/-", "+/-", "+/-", Function.prototype)}
+        {this.renderCalcButton("Del", "Del", "Del", this.backspaceDisplay)}
       </Flex>
     </Flex.Item>
   )
@@ -141,15 +156,15 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("nPr", "nPr", Function.prototype)}
-        {this.renderCalcButton("nCr", "nCr", Function.prototype)}
-        {this.renderCalcButton("x!", "x!", Function.prototype)}
-        {this.renderCalcButton("pi", "pi", Function.prototype)}
-        {this.renderCalcButton("log(10)", "log(10)", Function.prototype)}
-        {this.renderCalcButton("7", "7", this.addSymbolToDisplay)}
-        {this.renderCalcButton("8", "8", this.addSymbolToDisplay)}
-        {this.renderCalcButton("9", "9", this.addSymbolToDisplay)}
-        {this.renderCalcButton("÷", "/", this.addSymbolToDisplay)}
+        {this.renderCalcButton("nPr", "nPr", "nPr", Function.prototype)}
+        {this.renderCalcButton("nCr", "nCr", "nCr", Function.prototype)}
+        {this.renderCalcButton("x!", "!", "!", this.addSymbolToDisplay)}
+        {this.renderCalcButton("π", "pi", "pi", Function.prototype)}
+        {this.renderCalcButton("log(10)", "log(10)", "log(10)", Function.prototype)}
+        {this.renderCalcButton("7", "7", "7", this.addSymbolToDisplay)}
+        {this.renderCalcButton("8", "8", "8", this.addSymbolToDisplay)}
+        {this.renderCalcButton("9", "9", "9", this.addSymbolToDisplay)}
+        {this.renderCalcButton("÷", "÷", "/", this.addSymbolToDisplay)}
       </Flex>
     </Flex.Item>
   )
@@ -159,15 +174,15 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("sin", "sin", Function.prototype)}
-        {this.renderCalcButton("sec", "sec", Function.prototype)}
-        {this.renderCalcButton("sinh", "sinh", Function.prototype)}
-        {this.renderCalcButton("1/x", "1/x", Function.prototype)}
-        {this.renderCalcButton("log(n)", "log(n)", Function.prototype)}
-        {this.renderCalcButton("4", "4", this.addSymbolToDisplay)}
-        {this.renderCalcButton("5", "5", this.addSymbolToDisplay)}
-        {this.renderCalcButton("6", "6", this.addSymbolToDisplay)}
-        {this.renderCalcButton("×", "*", this.addSymbolToDisplay)}
+        {this.renderCalcButton("sin", "sin", "sin", Function.prototype)}
+        {this.renderCalcButton("sec", "sec", "sec", Function.prototype)}
+        {this.renderCalcButton("sinh", "sinh", "sinh", Function.prototype)}
+        {this.renderCalcButton("1/x", "1/x", "1/x", Function.prototype)}
+        {this.renderCalcButton("log(n)", "log(n)", "log(n)", Function.prototype)}
+        {this.renderCalcButton("4", "4", "4", this.addSymbolToDisplay)}
+        {this.renderCalcButton("5", "5", "5", this.addSymbolToDisplay)}
+        {this.renderCalcButton("6", "6", "6", this.addSymbolToDisplay)}
+        {this.renderCalcButton("×", "×", "*", this.addSymbolToDisplay)}
       </Flex>
     </Flex.Item>
   )
@@ -177,15 +192,15 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("cos", "cos", Function.prototype)}
-        {this.renderCalcButton("csc", "csc", Function.prototype)}
-        {this.renderCalcButton("cosh", "cosh", Function.prototype)}
-        {this.renderCalcButton("sqrt", "sqrt", Function.prototype)}
-        {this.renderCalcButton("x^2", "x^2", Function.prototype)}
-        {this.renderCalcButton("1", "1", this.addSymbolToDisplay)}
-        {this.renderCalcButton("2", "2", this.addSymbolToDisplay)}
-        {this.renderCalcButton("3", "3", this.addSymbolToDisplay)}
-        {this.renderCalcButton("-", "-", this.addSymbolToDisplay)}
+        {this.renderCalcButton("cos", "cos", "cos", Function.prototype)}
+        {this.renderCalcButton("csc", "csc", "csc", Function.prototype)}
+        {this.renderCalcButton("cosh", "cosh", "cosh", Function.prototype)}
+        {this.renderCalcButton("sqrt", "sqrt(", "sqrt(", this.addSymbolToDisplay)}
+        {this.renderCalcButton("x^2", "x^2", "x^2", Function.prototype)}
+        {this.renderCalcButton("1", "1", "1", this.addSymbolToDisplay)}
+        {this.renderCalcButton("2", "2", "2", this.addSymbolToDisplay)}
+        {this.renderCalcButton("3", "3", "3", this.addSymbolToDisplay)}
+        {this.renderCalcButton("-", "-", "-", this.addSymbolToDisplay)}
       </Flex>
     </Flex.Item>
   )
@@ -195,24 +210,24 @@ export default class Scientific extends Component {
       padding="xxx-small"
     >
       <Flex direction="row">
-        {this.renderCalcButton("tan", "tan", Function.prototype)}
-        {this.renderCalcButton("cot", "cot", Function.prototype)}
-        {this.renderCalcButton("tanh", "tanh", Function.prototype)}
-        {this.renderCalcButton("nrt", "nrt", Function.prototype)}
-        {this.renderCalcButton("x^n", "x^n", Function.prototype)}
-        {this.renderCalcButton("0", "0", this.addSymbolToDisplay)}
-        {this.renderCalcButton(".", ".", this.addSymbolToDisplay)}
-        {this.renderCalcButton("=", "=", this.addSymbolToDisplay)}
-        {this.renderCalcButton("+", "+", this.addSymbolToDisplay)}
+        {this.renderCalcButton("tan", "tan", "tan", Function.prototype)}
+        {this.renderCalcButton("cot", "cot", "cot", Function.prototype)}
+        {this.renderCalcButton("tanh", "tanh", "tanh", Function.prototype)}
+        {this.renderCalcButton("nrt", "nrt", "nrt", Function.prototype)}
+        {this.renderCalcButton("x^n", "x^n", "x^n", Function.prototype)}
+        {this.renderCalcButton("0", "0", "0", this.addSymbolToDisplay)}
+        {this.renderCalcButton(".", ".", ".", this.addSymbolToDisplay)}
+        {this.renderCalcButton("=", "=", "=", this.evaluateDisplay)}
+        {this.renderCalcButton("+", "+", "+", this.addSymbolToDisplay)}
       </Flex>
     </Flex.Item>
   )
 
   render = () => (
     <Flex
-      visualDebug
+      // visualDebug
       height="400px"
-      width="545px"
+      width="725px"
       direction="column"
     >
       {this.renderDisplay()}
