@@ -71,7 +71,7 @@ export default class Basic extends Component {
     })
   }
 
-  renderCalcButton(display, value, cb) {
+  renderCalcButton(display, value, cb, variant='default') {
     return (
       <Flex.Item
         width="48px"
@@ -81,6 +81,7 @@ export default class Basic extends Component {
           displaySymbol={display}
           hiddenSymbol={value}
           clickFunction={cb}
+          variant={variant}
         >
           {display}
         </CalculatorButton>
@@ -154,7 +155,7 @@ export default class Basic extends Component {
       <Flex direction="row">
         {this.renderCalcButton("0", "0", this.addSymbolToDisplay)}
         {this.renderCalcButton(".", ".", this.addSymbolToDisplay)}
-        {this.renderCalcButton("=", "=", this.evaluateDisplay)}
+        {this.renderCalcButton("=", "=", this.evaluateDisplay, 'primary')}
         {this.renderCalcButton("+", "+", this.addSymbolToDisplay)}
       </Flex>
     </Flex.Item>

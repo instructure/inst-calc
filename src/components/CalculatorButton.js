@@ -34,7 +34,12 @@ class CalculatorButton extends Button {
     static propTypes = {
         buttonSymbol: PropTypes.string,
         displaySymbol: PropTypes.string.isRequired,
-        hiddenSymbol: PropTypes.string.isRequired
+        hiddenSymbol: PropTypes.string.isRequired,
+        variant: PropTypes.string
+    }
+
+    static defaultProps = {
+        variant: 'default'
     }
 
     render() {
@@ -49,6 +54,7 @@ class CalculatorButton extends Button {
             <Button
                 onClick={() => this.props.clickFunction(this.props.displaySymbol, this.props.hiddenSymbol)}
                 fluidWidth
+                variant={this.props.variant}
             >
                 {textToDisplayOnButton}
             </Button>

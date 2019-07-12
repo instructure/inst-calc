@@ -35,7 +35,8 @@ export default class Scientific extends Component {
     super(props)
     this.state = {
       displayString: '',
-      hiddenString: ''
+      hiddenString: '',
+      register: null
     }
   }
 
@@ -70,22 +71,87 @@ export default class Scientific extends Component {
     }
   }
 
+
+
   evaluateDisplay = () => {
     // TODO: automatically close unclosed parentheses
     // for example: "sqrt(4" should be transformed to
     // "sqrt(4)" before evaluation
-
-    let result = evaluate(this.state.hiddenString).toString()
-    if (result === "NaN" || result === "Infinity") {
-      result = "Error"
+    if (this.state.hiddenString) {
+      let result = evaluate(this.state.hiddenString).toString()
+      if (result === "NaN" || result === "Infinity") {
+        result = "Error"
+      }
+      return result
     }
+  }
+
+  setEvaluation = () => {
+    const result = this.evaluateDisplay()
+    if (result) {
+      this.setState({
+        displayString: result.toString(),
+        hiddenString: result.toString()
+      })
+    }
+  }
+
+  memoryClear = () => {
     this.setState({
-      displayString: result.toString(),
-      hiddenString: result.toString()
+      register: null
     })
   }
 
-  renderCalcButton (button, display, value, cb, width = 1) {
+  memoryRecall = () => {
+    const mem = this.state.register
+    if (mem) {
+      this.addSymbolToDisplay(mem, mem)
+    }
+  }
+
+  memorySet = () => {
+    const result = this.evaluateDisplay()
+    if (result && result !== "Error") {
+      this.setState({
+        register: result
+      })
+    }
+  }
+
+  memoryAdd = () => {
+    const result = this.evaluateDisplay()
+    if (!this.state.register) {
+      this.setState({
+        register: result
+      })
+      return
+    }
+    else {
+      const sum = evaluate(this.state.register + '+' + result)
+      this.setState({
+        register: sum
+      })
+    }
+  }
+
+  memorySubtract = () => {
+    const result = this.evaluateDisplay()
+    if (!this.state.register) {
+      const negative = evaluate(result + '* -1')
+      this.setState({
+        register: negative
+      })
+      return
+    }
+    else {
+      const dif = evaluate(this.state.register + '-' + result)
+      this.setState({
+        register: dif
+      })
+    }
+  }
+
+  renderCalcButton(button, display, value, cb, width = 1, variant='default') {
     const buttonWidth = (80 * width) + 'px'
     return (
       <Flex.Item
@@ -97,6 +163,7 @@ export default class Scientific extends Component {
           displaySymbol={display}
           hiddenSymbol={value}
           clickFunction={cb}
+          variant={variant}
         >
           {display}
         </CalculatorButton>
@@ -123,11 +190,11 @@ export default class Scientific extends Component {
     >
       <Flex direction="row">
         {this.renderCalcButton("Rad/Deg", "Rad/Deg", "Rad/Deg", Function.prototype, 2)}
-        {this.renderCalcButton("MC", "MC", "MC", Function.prototype)}
-        {this.renderCalcButton("MR", "MR", "MR", Function.prototype)}
-        {this.renderCalcButton("M+", "M+", "M+", Function.prototype)}
-        {this.renderCalcButton("M-", "M-", "M-", Function.prototype)}
-        {this.renderCalcButton("CE", "CE", "CE", Function.prototype)}
+        {this.renderCalcButton("MC", "MC", "MC", this.memoryClear)}
+        {this.renderCalcButton("MR", "MR", "MR", this.memoryRecall)}
+        {this.renderCalcButton("MS", "MS", "MS", this.memorySet)}
+        {this.renderCalcButton("M+", "M+", "M+", this.memoryAdd)}
+        {this.renderCalcButton("M-", "M-", "M-", this.memorySubtract)}
         {this.renderCalcButton("Clear", "Clear", "Clear", this.clearDisplay, 2)}
       </Flex>
     </Flex.Item>
@@ -146,7 +213,7 @@ export default class Scientific extends Component {
         {this.renderCalcButton("(", "(", "(", this.addSymbolToDisplay)}
         {this.renderCalcButton(")", ")", ")", this.addSymbolToDisplay)}
         {this.renderCalcButton("+/-", "+/-", "+/-", Function.prototype)}
-        {this.renderCalcButton("Del", "Del", "Del", this.backspaceDisplay)}
+        {this.renderCalcButton("CE", "CE", "CE", this.backspaceDisplay)}
       </Flex>
     </Flex.Item>
   )
@@ -186,7 +253,7 @@ export default class Scientific extends Component {
       </Flex>
     </Flex.Item>
   )
-  
+
   renderRow5 = () => (
     <Flex.Item
       padding="xxx-small"
@@ -217,7 +284,7 @@ export default class Scientific extends Component {
         {this.renderCalcButton("x^n", "^", "^", this.addSymbolToDisplay)}
         {this.renderCalcButton("0", "0", "0", this.addSymbolToDisplay)}
         {this.renderCalcButton(".", ".", ".", this.addSymbolToDisplay)}
-        {this.renderCalcButton("=", "=", "=", this.evaluateDisplay)}
+        {this.renderCalcButton("=", "=", "=", this.setEvaluation, 1, 'primary')}
         {this.renderCalcButton("+", "+", "+", this.addSymbolToDisplay)}
       </Flex>
     </Flex.Item>
@@ -226,7 +293,7 @@ export default class Scientific extends Component {
   render = () => (
     <Flex
       // visualDebug
-      height="400px"
+      height="325px"
       width="725px"
       direction="column"
     >
