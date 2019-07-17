@@ -23,7 +23,7 @@
  */
 
 import React, { Component } from 'react'
-import { evaluate } from 'mathjs'
+import { evaluate } from './parser/parser'
 
 import { Flex } from '@instructure/ui-layout/lib/Flex'
 import { AccessibleContent } from '@instructure/ui-a11y/lib/AccessibleContent'
