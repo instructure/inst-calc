@@ -975,6 +975,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.5.0":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.3.tgz#935122c74c73d2240cafd32ddb5fc2a6cd35cf1f"
+  integrity sha512-kq6anf9JGjW8Nt5rYfEuGRaEAaH1mkv3Bbu6rYvLOpPh/RusSJXuKPEAoZ7L7gybZkchE8+NV5g9vKF4AGAtsA==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -1091,10 +1098,22 @@
   dependencies:
     "@emotion/memoize" "0.7.2"
 
+"@emotion/is-prop-valid@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.3.tgz#cbe62ddbea08aa022cdf72da3971570a33190d29"
+  integrity sha512-We7VBiltAJ70KQA0dWkdPMXnYoizlxOXpvtjmu5/MBnExd+u0PGgV27WCYanmLAbCwAU30Le/xA0CQs/F/Otig==
+  dependencies:
+    "@emotion/memoize" "0.7.3"
+
 "@emotion/memoize@0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.2.tgz#7f4c71b7654068dfcccad29553520f984cc66b30"
   integrity sha512-hnHhwQzvPCW1QjBWFyBtsETdllOM92BfrKWbUTmh9aeOlcVOiXvlPsK4104xH8NsaKfg86PTFsWkueQeUfMA/w==
+
+"@emotion/memoize@0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.3.tgz#5b6b1c11d6a6dddf1f2fc996f74cf3b219644d78"
+  integrity sha512-2Md9mH6mvo+ygq1trTeVp2uzAKwE2P7In0cRpD/M9Q70aH8L+rxMLbb3JCN2JoSWsV2O+DdFjfbbXoMoLBczow==
 
 "@emotion/serialize@^0.11.8":
   version "0.11.8"
@@ -1272,6 +1291,15 @@
   resolved "https://registry.yarnpkg.com/@instructure/config-loader/-/config-loader-6.6.0.tgz#0f3a343d0c00addb993efc90dc207f2db65a4e79"
   integrity sha512-hXLiUNEzlSk/IugKgHp/wEz1uIrq679TW42BJdGVg1xr2fnDNTjvi55+DiThgBHeiaim2YYBouYC5IxHjH2kpA==
 
+"@instructure/console@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/console/-/console-6.13.0.tgz#2b4a2407b02f282e61f085789dd6636897dcaa9f"
+  integrity sha512-UwMT1CREirKlmnkMLztdAns5aK+acnR89+46TT0iFoY8/Wh2sDg/JJdrfvkd1Ud6AFnsRD3zEAevhl+OaujHDQ==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.0.0"
+    "@babel/helper-module-imports" "^7.0.0"
+    babel-plugin-macros "^2.6.1"
+
 "@instructure/console@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@instructure/console/-/console-6.6.0.tgz#109d0e3ada6d96a4f4d24ccc40387c94ba99bff7"
@@ -1325,6 +1353,21 @@
   integrity sha512-/UovdvyN+qeyj0AaZ6/p5RBrnLNXakMUqaFj4XwowhBVhsVB43nOzypKEheyrplXr9FMsDpWUkF4YH84Dby+kw==
   dependencies:
     postcss "^7"
+
+"@instructure/ui-a11y-content@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-a11y-content/-/ui-a11y-content-6.13.0.tgz#74cb8930d4cdc8d1b2b4c3ec8c6b78b3919a0929"
+  integrity sha512-jKa5gcoXnXugyEjAhkMZA5WnszoBtqF7MGHWeTaQ7aKTRHQAVnnc0Kt6wvkSHAYzJ5KSVV15ETBz183/zvN3Ig==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    "@instructure/console" "^6.13.0"
+    "@instructure/ui-dom-utils" "^6.13.0"
+    "@instructure/ui-react-utils" "^6.13.0"
+    "@instructure/ui-themeable" "^6.13.0"
+    "@instructure/ui-utils" "^6.13.0"
+    "@instructure/uid" "^6.13.0"
+    keycode "^2"
+    prop-types "^15"
 
 "@instructure/ui-a11y@^6.6.0":
   version "6.6.0"
@@ -1392,6 +1435,14 @@
     keycode "^2"
     prop-types "^15"
 
+"@instructure/ui-color-utils@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-color-utils/-/ui-color-utils-6.13.0.tgz#16b2dca98bb79635477d827c6062eb599d7e0f78"
+  integrity sha512-h7nj3ynGYIPy4wfzwWekhDWpmvz8GDy6s7L3xcSiHlXsyNEOSZIToVQC8Ptf7EExDtHH5jnvUW8a5RGzhPos3w==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    tinycolor2 "^1.4.1"
+
 "@instructure/ui-color-utils@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-color-utils/-/ui-color-utils-6.6.0.tgz#b16ec5d6d31eeaca6d97a63d744d5d7466fc6dc4"
@@ -1418,12 +1469,27 @@
     prop-types "^15"
     react-docgen "^4"
 
+"@instructure/ui-decorator@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-decorator/-/ui-decorator-6.13.0.tgz#0618e758871791e829ae974d44635b8b41145f97"
+  integrity sha512-eQRY2CZ0nvasQAOB4ZT2Rs7HxobpEGONjezmAJdYBVTtZL/bVERMg5Lai9o15sFrAxDv6PJTB4PlbKN+m7r7xg==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+
 "@instructure/ui-decorator@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-decorator/-/ui-decorator-6.6.0.tgz#8b452aa56d497254b645b8bd543ca00353ad7322"
   integrity sha512-v72d7/dSRUKdWvxXKQnp+TwsMrl3958vw8dZDLHR9cMng4PiYr9FwnIwXLbBnTEFLKo2H8XbPuRTQDAkM2W+dw==
   dependencies:
     "@babel/runtime" "^7"
+
+"@instructure/ui-dom-utils@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-dom-utils/-/ui-dom-utils-6.13.0.tgz#f6f72f0511bdc6e6193c95ba5f8edfad987ee9aa"
+  integrity sha512-eKX0MwCJ5k/SUbPzie16ektv+2HEgb5pryNHO3LWsrQ0yT6u/DH1EHuMmzPubJEBPGCpv9Oxg5TD1X8FxuBYnQ==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    "@instructure/console" "^6.13.0"
 
 "@instructure/ui-dom-utils@^6.6.0":
   version "6.6.0"
@@ -1615,6 +1681,19 @@
     "@babel/runtime" "^7"
     prop-types ">= 15.7.0"
 
+"@instructure/ui-react-utils@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-react-utils/-/ui-react-utils-6.13.0.tgz#4edccae12b6e4e1a6b1e9c0807ce7743a7ff4959"
+  integrity sha512-bAtv+y/W1Qvfcblnk6zv5raeLcF7/kDrV40HR/Ua7m1lDgRsowBFiwUTzjVxfUksnC9WLFYrlS4IyqKG7Mmcww==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    "@emotion/is-prop-valid" "^0.8.3"
+    "@instructure/console" "^6.13.0"
+    "@instructure/ui-decorator" "^6.13.0"
+    "@instructure/ui-dom-utils" "^6.13.0"
+    "@instructure/ui-utils" "^6.13.0"
+    prop-types "^15"
+
 "@instructure/ui-react-utils@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-react-utils/-/ui-react-utils-6.6.0.tgz#4add1cb45e4a119c421d0d51448d67b026d22cee"
@@ -1679,6 +1758,14 @@
     stylelint-config-standard "^18.3.0"
     stylelint-declaration-strict-value "^1.1.3"
 
+"@instructure/ui-stylesheet@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-stylesheet/-/ui-stylesheet-6.13.0.tgz#89b3f4f9d2bf38561e3d553c1a3baa7b96af8c41"
+  integrity sha512-vgUvTSt22gB8YuUkkiB7/GJqpsOKTzHVyuPbj+Icj8YJI/OQeXoRiaQPSpuPXkev7z46JfH7nDOPDkxRDsPLvg==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    glamor "^2.20.40"
+
 "@instructure/ui-stylesheet@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-stylesheet/-/ui-stylesheet-6.6.0.tgz#f1344bc82f9d3b6b4c8c2b4ef2b7a2a989a1df0e"
@@ -1708,6 +1795,22 @@
   dependencies:
     "@instructure/ui-decorator" "^6.6.0"
 
+"@instructure/ui-themeable@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-themeable/-/ui-themeable-6.13.0.tgz#25a4b963f5ca0a43bcd1dbb8a9b2954c6dc431bf"
+  integrity sha512-yMuP2H46dkWIdGMuoN1HADaYNLm1/FA20T5wzdHXQQZAmNegs2v/BMgjGsIA6oOFMDrdIm9H1xS6rOX0o3GEEQ==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    "@instructure/console" "^6.13.0"
+    "@instructure/ui-color-utils" "^6.13.0"
+    "@instructure/ui-decorator" "^6.13.0"
+    "@instructure/ui-dom-utils" "^6.13.0"
+    "@instructure/ui-react-utils" "^6.13.0"
+    "@instructure/ui-stylesheet" "^6.13.0"
+    "@instructure/ui-utils" "^6.13.0"
+    "@instructure/uid" "^6.13.0"
+    prop-types "^15"
+
 "@instructure/ui-themeable@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-themeable/-/ui-themeable-6.6.0.tgz#c175f21c776cd3bd7eab44cc3726956d5c230879"
@@ -1723,6 +1826,18 @@
     "@instructure/ui-utils" "^6.6.0"
     "@instructure/uid" "^6.6.0"
     prop-types "^15"
+
+"@instructure/ui-utils@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-utils/-/ui-utils-6.13.0.tgz#3e155112944ab485881f6f308dd863c27442b5f8"
+  integrity sha512-xF7iOxmuIC7J6vXcPxdm7H6XOTpQKxErZIIQ0vvQSOvm8EasCwd/tXxbHuJ5Wx3Qzx6C2OpBRlHC1Y/pEm3Yjg==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
+    "@instructure/console" "^6.13.0"
+    "@instructure/ui-dom-utils" "^6.13.0"
+    bowser "^1.9.4"
+    fast-deep-equal "^2"
+    keycode "^2"
 
 "@instructure/ui-utils@^6.6.0":
   version "6.6.0"
@@ -1757,6 +1872,13 @@
     thread-loader "^2.1.2"
     url-loader "^2.0.1"
     webpack "^4.35.2"
+
+"@instructure/uid@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@instructure/uid/-/uid-6.13.0.tgz#abc288c4d5fe8a718e86b72a857cdaf6e4a40960"
+  integrity sha512-7/JUcGYhielO97YOpu/q0pTl+fJOuBbT+8ce8wz6/fz/HWXUa161/Q02GcdyndFmLqUKGgljRC/DimOOx0kjig==
+  dependencies:
+    "@babel/runtime" "^7.5.0"
 
 "@instructure/uid@^6.6.0":
   version "6.6.0"

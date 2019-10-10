@@ -12,6 +12,7 @@
 		"dependencies": {
 				"@instructure/canvas-theme": "^6.6.0",
 				"@instructure/ui-a11y": "^6.6.0",
+				"@instructure/ui-a11y-content": "^6.13.0",
 				"@instructure/ui-buttons": "^6.6.0",
 				"@instructure/ui-elements": "^6.6.0",
 				"@instructure/ui-icons": "^6.6.0",

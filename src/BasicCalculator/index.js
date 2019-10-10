@@ -23,13 +23,23 @@
  */
 
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { evaluate } from 'mathjs'
 
 import CalculatorButton from '../components/CalculatorButton'
 import CalculatorDisplayText from '../components/CalculatorDisplayText'
 import { Flex } from '@instructure/ui-layout/lib/Flex'
+import DraggableWrapper from '../DraggableWrapper'
 
 export default class Basic extends Component {
+  static propTypes = {
+    isOpen: PropTypes.bool
+  }
+
+  static defaultProps = {
+    isOpen: false
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -162,17 +172,19 @@ export default class Basic extends Component {
   )
 
   render = () => (
-    <Flex
-      height="235px"
-      width="200px"
-      direction="column"
-      overflowX="hidden"
-    >
-      {this.renderClearAndDisplay()}
-      {this.renderRow1()}
-      {this.renderRow2()}
-      {this.renderRow3()}
-      {this.renderRow4()}
-    </Flex>
+    <DraggableWrapper isOpen={this.props.isOpen}>
+      <Flex
+        height="235px"
+        width="200px"
+        direction="column"
+        overflowX="hidden"
+      >
+        {this.renderClearAndDisplay()}
+        {this.renderRow1()}
+        {this.renderRow2()}
+        {this.renderRow3()}
+        {this.renderRow4()}
+      </Flex>
+    </DraggableWrapper>
   )
 }
