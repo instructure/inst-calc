@@ -22,18 +22,44 @@
  * SOFTWARE.
  */
 
-import React from 'react'
+import React, { Component } from 'react'
 import Basic from './BasicCalculator'
 import Scientific from './ScientificCalculator'
+import { Button } from '@instructure/ui-buttons'
 
 import '@instructure/canvas-theme'
 
-const App = () => (
-  <div>
-    <Basic />
-    <hr />
-    <Scientific />
-  </div>
-)
+export default class App extends Component {
+  state = {
+    basicOpen: false,
+    scientificOpen: false
+  }
 
-export default App
+  openBasic = () => {
+    this.setState({
+      basicOpen: !this.state.basicOpen
+    })
+  }
+
+  openScientific = () => {
+    this.setState({
+      scientificOpen: !this.state.scientificOpen
+    })
+  }
+
+  render () {
+    return (
+      <div>
+        <Button onClick={this.openBasic}>
+          Basic Calculator Toggle
+        </Button>
+        <Basic isOpen={this.state.basicOpen}/>
+
+        <Button onClick={this.openScientific}>
+          Scientific Calculator Toggle
+        </Button>
+        <Scientific isOpen={this.state.scientificOpen} />
+      </div>
+    )
+  }
+}
