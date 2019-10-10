@@ -35,6 +35,14 @@ export default class App extends Component {
     scientificOpen: false
   }
 
+  handleBasicClose = () => {
+    this.setState({ basicOpen: false })
+  }
+
+  handleScientificClose = () => {
+    this.setState({ scientificOpen: false })
+  }
+
   openBasic = () => {
     this.setState({
       basicOpen: !this.state.basicOpen
@@ -53,12 +61,18 @@ export default class App extends Component {
         <Button onClick={this.openBasic}>
           Basic Calculator Toggle
         </Button>
-        <Basic isOpen={this.state.basicOpen}/>
+        <Basic
+          isOpen={this.state.basicOpen}
+          handleClose={this.handleBasicClose}
+        />
 
         <Button onClick={this.openScientific}>
           Scientific Calculator Toggle
         </Button>
-        <Scientific isOpen={this.state.scientificOpen} />
+        <Scientific
+          isOpen={this.state.scientificOpen}
+          handleClose={this.handleScientificClose}
+        />
       </div>
     )
   }

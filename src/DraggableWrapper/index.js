@@ -24,14 +24,17 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { CloseButton } from '@instructure/ui-buttons'
 
 export default class DraggableWrapper extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    handleClose: PropTypes.func
   }
 
   static defaultProps = {
+    handleClose () {},
     isOpen: false
   }
 
@@ -102,7 +105,16 @@ export default class DraggableWrapper extends Component {
               backgroundColor: '#2D3B45',
               cursor: 'move'
             }}
-          />
+          >
+            <CloseButton
+              variant="icon-inverse"
+              placement="end"
+              offset="none"
+              onClick={this.props.handleClose}
+            >
+              Close
+            </CloseButton>
+          </div>
           {this.props.children}
         </div>
       )
