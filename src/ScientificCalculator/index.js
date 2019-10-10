@@ -34,10 +34,12 @@ import DraggableWrapper from '../DraggableWrapper'
 
 export default class Scientific extends Component {
   static propTypes = {
+    handleClose: PropTypes.func,
     isOpen: PropTypes.bool
   }
 
   static defaultProps = {
+    handleClose () {},
     isOpen: false
   }
 
@@ -301,9 +303,8 @@ export default class Scientific extends Component {
   )
 
   render = () => (
-    <DraggableWrapper isOpen={this.props.isOpen}>
+    <DraggableWrapper isOpen={this.props.isOpen} handleClose={this.props.handleClose}>
       <Flex
-        // visualDebug
         height="325px"
         width="725px"
         direction="column"

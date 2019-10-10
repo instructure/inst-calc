@@ -33,10 +33,12 @@ import DraggableWrapper from '../DraggableWrapper'
 
 export default class Basic extends Component {
   static propTypes = {
+    handleClose: PropTypes.func,
     isOpen: PropTypes.bool
   }
 
   static defaultProps = {
+    handleClose () {},
     isOpen: false
   }
 
@@ -172,7 +174,7 @@ export default class Basic extends Component {
   )
 
   render = () => (
-    <DraggableWrapper isOpen={this.props.isOpen}>
+    <DraggableWrapper isOpen={this.props.isOpen} handleClose={this.props.handleClose}>
       <Flex
         height="235px"
         width="200px"
