@@ -87,6 +87,7 @@ export default class DraggableWrapper extends Component {
       return (
         <Dialog
           shouldContainFocus
+          shouldReturnFocus
           open={this.props.isOpen}
         >
           <div
