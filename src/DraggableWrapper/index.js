@@ -25,6 +25,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { CloseButton } from '@instructure/ui-buttons'
+import { Dialog } from '@instructure/ui-a11y'
 
 export default class DraggableWrapper extends Component {
   static propTypes = {
@@ -84,39 +85,44 @@ export default class DraggableWrapper extends Component {
 
     render () {
       return (
-        <div
-          ref={this.handleWrapperRef}
-          style={{
-            position: 'absolute',
-            backgroundColor: '#F5F5F5',
-            zIndex: 9999,
-            width: 'max-content',
-            border: '5px solid #2D3B45',
-            top: '0',
-            left: '0',
-            display: this.props.isOpen ? 'block' : 'none'
-          }}
+        <Dialog
+          shouldContainFocus
+          open={this.props.isOpen}
         >
           <div
-            role="presentation" // this might be the wrong role, idk
-            onMouseDown={this.handleMouseDown}
+            ref={this.handleWrapperRef}
             style={{
-              height: '30px',
-              backgroundColor: '#2D3B45',
-              cursor: 'move'
+              position: 'absolute',
+              backgroundColor: '#F5F5F5',
+              zIndex: 9999,
+              width: 'max-content',
+              border: '5px solid #2D3B45',
+              top: '0',
+              left: '0',
+              display: this.props.isOpen ? 'block' : 'none'
             }}
           >
-            <CloseButton
-              variant="icon-inverse"
-              placement="end"
-              offset="none"
-              onClick={this.props.handleClose}
+            <div
+              role="presentation"
+              onMouseDown={this.handleMouseDown}
+              style={{
+                height: '30px',
+                backgroundColor: '#2D3B45',
+                cursor: 'move'
+              }}
             >
-              Close
-            </CloseButton>
+              <CloseButton
+                variant="icon-inverse"
+                placement="end"
+                offset="none"
+                onClick={this.props.handleClose}
+              >
+                Close
+              </CloseButton>
+            </div>
+            {this.props.children}
           </div>
-          {this.props.children}
-        </div>
+        </Dialog>
       )
     }
 }
